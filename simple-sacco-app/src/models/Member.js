@@ -7,6 +7,7 @@ export class Member {
         this.savingsBalance = Number(initialDeposit);
         this.joinDate = new Date().toLocaleDateString();
         this.role = 'member';
+        this.loanedAmount = 0;
     }
 
     // A simple method we can expand later
@@ -17,5 +18,13 @@ export class Member {
 
     editMemberRole(role) {
         this.role = role
+    }
+
+    giveLoan(amount, member) {
+        if (member.role === 'admin') {
+            this.loanedAmount += Number(amount);
+            return this.loanedAmount;
+        }
+        return 'You are not authorized to give loan'
     }
 }
